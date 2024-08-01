@@ -26,11 +26,11 @@ client.once(Events.ClientReady, (readyClient) => {
 });
 
 client.on("interactionCreate", async (interaction) => {
-  console.log(interaction);
+//   console.log(interaction);
 
 	if(interaction.type == InteractionType.ApplicationCommand){
 		if (interaction.commandName === "lineups") {
-			console.log(interaction)
+			// console.log(interaction)
 			
 			
 			const agent = interaction.options.getString('agent');
