@@ -29,10 +29,12 @@ client.on("interactionCreate", async (interaction) => {
 //   console.log(interaction);
 
 	if(interaction.type == InteractionType.ApplicationCommand){
+
+		if (interaction.commandName == "ping"){
+			interaction.reply("pong")
+		}
 		if (interaction.commandName === "lineups") {
 			// console.log(interaction)
-			
-			
 			const agent = interaction.options.getString('agent');
 			const map = interaction.options.getString('map')
 			
@@ -78,7 +80,7 @@ client.on("interactionCreate", async (interaction) => {
 					const nextBtn = new ButtonBuilder()
 						.setCustomId(`nextLineUpButton_${agent}_${map}_${newIndex}`)
 						.setStyle(ButtonStyle.Success)
-						.setLabel("Next LineUp ⏩")
+						.setLabel("Next new LineUp ⏩")
 					const newrow = new ActionRowBuilder().addComponents(nextBtn);
 					await interaction.update({
 						content: link,
