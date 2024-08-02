@@ -32,3 +32,14 @@ jobs:
 
     - name: Log out from Docker Hub
       run: docker logout
+
+    - name: Log in to Azure
+      if: success()
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Restart Azure Container Instance
+      if: success()
+      run: |
+        az container restart --resource-group ${{ vars.RESOURCE_GROUP_NAME }} --name ${{ vars.CONTAINER_INSTANCE_NAME }}
