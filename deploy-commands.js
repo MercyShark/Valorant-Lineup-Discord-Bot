@@ -4,6 +4,7 @@ config();
 const token = process.env.BOT_TOKEN;
 const clientid = process.env.CLIEND_ID;
 const commands = [
+    new SlashCommandBuilder().setName("ping").setDescription("Replies with pong!! > MercyShark"),
     new SlashCommandBuilder()
       .setName('lineups')
       .setDescription(
