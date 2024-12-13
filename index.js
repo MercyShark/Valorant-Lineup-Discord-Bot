@@ -8,10 +8,11 @@ import {
   InteractionType,
 } from "discord.js";
 
+
+import express from 'express';
 import mongoose from "mongoose";
 import { config } from "dotenv";
 import Lineup from "./models/lineup.js";
-
 config();
 const token = process.env.BOT_TOKEN;
 const mongo_url = process.env.MONGO_URL
@@ -101,4 +102,19 @@ client.on("interactionCreate", async (interaction) => {
 })
 client.login(token);
 
+
+const app = express();
+
+app.get('/', (req, res) => {
+    res.send('Bot is running!');
+});
+
+app.head('/health', (req, res) => {
+    res.status(200).end(); // Respond with headers only, no body
+});
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
 
